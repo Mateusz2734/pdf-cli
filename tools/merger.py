@@ -3,4 +3,4 @@ from pypdf.errors import PdfReadError
 
 class Merger:
     def __init__(self, files):
-        self.files = files
+        pass
