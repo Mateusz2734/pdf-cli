@@ -13,11 +13,10 @@ def to_pagerange(slice: str) -> str:
     """
     if ":" in slice:
         slice_list = slice.split(":")
-        slice_list = list(map(lambda x: str(int(x) - 1), slice_list))
-        slice = f"{slice_list[0]}:{slice_list[1]}"
+        slice = f"{int(slice_list[0])-1}:{slice_list[1]}"
     else:
         slice = str(int(slice) - 1)
-    return slice
+    return PageRange(slice)
 
 
 def process_slices(slices: str) -> List[PageRange]:
