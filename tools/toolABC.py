@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
+
 class Tool(ABC):
     @abstractmethod
-    def execute(self, path: str, *args):
+    def execute(self):
         return NotImplementedError
