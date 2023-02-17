@@ -11,6 +11,12 @@ class Compressor(Tool):
         self.execute(path)
 
     def execute(self, path):
+        """
+        It takes a PDF file, reads it, compresses the content streams, and writes the compressed PDF to
+        the desktop
+
+        :param path: The path to the PDF file you want to compress
+        """
         try:
             DESKTOP = os.path.join(os.path.join(
                 os.environ['USERPROFILE']), 'Desktop')
