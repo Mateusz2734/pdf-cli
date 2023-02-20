@@ -6,14 +6,14 @@ from pypdf import PdfReader, PdfWriter, PageRange
 from pypdf.errors import PdfReadError
 
 from toolABC import Tool
-from slicetools import process_slices
+from slicetools import create_pageranges
 
 sys.path.append('../functions')
 
 
 class Slicer(Tool):
     def __init__(self, path: str, slices: List[PageRange]) -> None:
-        slices = process_slices(slices)
+        slices = create_pageranges(slices)
         self.execute(path, slices)
 
     def execute(self, path: str, slices: List[PageRange]):

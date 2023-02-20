@@ -19,7 +19,7 @@ def to_pagerange(slice: str) -> str:
     return PageRange(slice)
 
 
-def process_slices(slices: str) -> List[PageRange]:
+def create_pageranges(slices: str) -> List[PageRange]:
     """
     It takes a string of comma-separated slices, and returns a list of PageRange objects
 
