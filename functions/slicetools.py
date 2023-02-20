@@ -28,3 +28,28 @@ def create_pageranges(slices: str) -> List[PageRange]:
     :return: A list of PageRange objects.
     """
     return list(map(to_pagerange, slices.split(',')))
+
+
+def invert_slices(slices: str, page_count: int) -> str:
+    """
+    It takes a string of page numbers and page ranges, and returns a string of page numbers that are not
+    in the original string
+
+    :param slices: a string of comma-separated numbers and ranges of numbers, e.g. "1,3,5:7,9"
+    :type slices: str
+    :param page_count: the total number of pages in the document
+    :type page_count: int
+    :return: The pages that are not in the slices.
+    :type return: str
+    """
+    to_delete = []
+    for slice in slices.split(","):
+        if ":" in slice:
+            left = int(slice.split(":")[0])
+            right = int(slice.split(":")[1])+1
+            [to_delete.append(str(num)) for num in
+                range(left, right) if int(num) <= page_count]
+        else:
+            to_delete.append(slice)
+    pages = [str(i+1) for i in range(page_count)]
+    return ",".join(list(filter(lambda x: x not in to_delete, pages)))
