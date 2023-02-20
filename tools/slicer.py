@@ -6,7 +6,7 @@ from pypdf import PdfReader, PdfWriter
 from pypdf.errors import PdfReadError
 
 from tools.toolABC import Tool
-from slicetools import create_pageranges
+from functions.slicetools import create_pageranges
 
 
 class Slicer(Tool):
