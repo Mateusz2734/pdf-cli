@@ -5,7 +5,7 @@ sys.path.append('../functions')
 from pypdf import PdfReader, PdfWriter
 from pypdf.errors import PdfReadError
 
-from toolABC import Tool
+from tools.toolABC import Tool
 from slicetools import create_pageranges
 
 

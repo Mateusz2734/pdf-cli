@@ -7,7 +7,7 @@ from pypdf.errors import PdfReadError
 from pypdf import PdfReader, PdfWriter
 
 from slicetools import create_pageranges, invert_slices
-from toolABC import Tool
+from tools.toolABC import Tool
 
 
 class Deleter(Tool):

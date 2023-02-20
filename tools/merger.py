@@ -4,7 +4,7 @@ import os
 from pypdf import PdfReader, PdfWriter
 from pypdf.errors import PdfReadError
 
-from toolABC import Tool
+from tools.toolABC import Tool
 
 
 class Merger(Tool):
