@@ -1,8 +1,17 @@
-from pypdf import PdfMerger, PdfReader, PdfWriter, PageRange
+import click
 
-reader = PdfReader("test1.pdf")
+from commands.merge import merge
+from commands.compress import compress
+from commands.delete import delete
+from commands.slice import slice
 
-print(len(reader.pages))
+@click.group()
+def cli():
+    """Group of commands to manipulate PDF files"""
+    pass
 
-rang = PageRange(":8").indices(3)
-print(rang)
+
+cli.add_command(merge)
+cli.add_command(compress)
+cli.add_command(delete)
+cli.add_command(slice)
