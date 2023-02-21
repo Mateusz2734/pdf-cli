@@ -4,7 +4,7 @@ import os
 from pypdf import PdfReader, PdfWriter
 from pypdf.errors import PdfReadError
 
-from toolABC import Tool
+from tools.toolABC import Tool
 
 
 class Merger(Tool):
@@ -42,13 +42,6 @@ class Merger(Tool):
         :param writer: PdfWriter
         :type writer: PdfWriter
         """
-        try:
-            reader = PdfReader(path)
-            for page in reader.pages:
-                writer.add_page(page)
-
-        except FileNotFoundError:
-            print(f"File {path} does not exist")
-
-        except PdfReadError:
-            print(f"File {path} is not valid PDF")
+        reader = PdfReader(path)
+        for page in reader.pages:
+            writer.add_page(page)

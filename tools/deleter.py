@@ -6,8 +6,8 @@ sys.path.append('../functions')
 from pypdf.errors import PdfReadError
 from pypdf import PdfReader, PdfWriter
 
-from slicetools import create_pageranges, invert_slices
-from toolABC import Tool
+from functions.slicetools import create_pageranges, invert_slices
+from tools.toolABC import Tool
 
 
 class Deleter(Tool):
@@ -29,16 +29,8 @@ class Deleter(Tool):
         filename = os.path.basename(path).split(".")[0]
         out = os.path.join(DESKTOP, f"{filename}-deleted.pdf")
 
-        writer = PdfWriter()
-
-        try:
-            reader = PdfReader(path)
-
-        except FileNotFoundError:
-            print(f"File {path} does not exist")
-
-        except PdfReadError:
-            print(f"File {path} is not valid PDF")
+        writer = PdfWriter()        
+        reader = PdfReader(path)
 
         slices = create_pageranges(invert_slices(slices, len(reader.pages)))
 

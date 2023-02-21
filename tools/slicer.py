@@ -3,10 +3,9 @@ import sys
 sys.path.append('../functions')
 
 from pypdf import PdfReader, PdfWriter
-from pypdf.errors import PdfReadError
 
-from toolABC import Tool
-from slicetools import create_pageranges
+from tools.toolABC import Tool
+from functions.slicetools import create_pageranges
 
 
 class Slicer(Tool):
@@ -31,14 +30,7 @@ class Slicer(Tool):
         slices = create_pageranges(slices)
 
         writer = PdfWriter()
-        try:
-            reader = PdfReader(path)
-
-        except FileNotFoundError:
-            print(f"File {path} does not exist")
-
-        except PdfReadError:
-            print(f"File {path} is not valid PDF")
+        reader = PdfReader(path)
 
         for slice in slices:
             writer.append(fileobj=reader, pages=slice)
