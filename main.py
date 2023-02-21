@@ -5,7 +5,9 @@ from commands.compress import compress
 from commands.delete import delete
 from commands.slice import slice
 
-@click.group()
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+
+@click.group(context_settings=CONTEXT_SETTINGS)
 def cli():
     """Group of commands to manipulate PDF files"""
     pass
