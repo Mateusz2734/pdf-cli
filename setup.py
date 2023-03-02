@@ -8,6 +8,7 @@ setup(
     install_requires=["pypdf==3.4.0",
                       "click==8.1.3",
                       "colorama"],
+    py_modules=["main"],
     entry_points="""
         [console_scripts]
         pdf=main:cli
