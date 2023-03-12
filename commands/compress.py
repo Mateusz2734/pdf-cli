@@ -4,14 +4,15 @@ from tools.compressor import Compressor
 
 @click.command(short_help="Compress pages of PDF")
 @click.argument('path', nargs=1, metavar='<path>')
-def compress(path):
+@click.option("-s", "--no-suffix", is_flag=True, show_default=True, default=False, help="Do not add the '-compressed' suffix")
+def compress(path, no_suffix):
     """
     This command takes <path> to PDF files, compressess its pages and saves new file on Desktop
     
     <path> is path to the PDF file you want to compress
     """
     try:
-        compressor = Compressor(path)
+        compressor = Compressor(path, no_suffix)
     except IndexError:
         click.secho('ERROR: No file specified', err=True, fg="red")
     except FileNotFoundError:

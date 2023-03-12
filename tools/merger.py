@@ -8,10 +8,14 @@ from tools.toolABC import Tool
 
 
 class Merger(Tool):
-    def __init__(self, paths, no_suffix):
-        self.execute(paths, no_suffix)
+    def __init__(self, paths: List[str], no_suffix: bool) -> None:
+        self.suffix = "-merged"
+        if no_suffix:
+            self.suffix = ""
 
-    def execute(self, paths: List[str], no_suffix: bool):
+        self.execute(paths, self.suffix)
+
+    def execute(self, paths: List[str], suffix: str):
         """
         It takes a list of paths to PDF files, merges them into a single PDF file, and saves the merged
         PDF file to the desktop
@@ -19,10 +23,6 @@ class Merger(Tool):
         :param paths: A list of paths to the PDFs you want to merge
         :type paths: List[str]
         """
-        if no_suffix:
-            suffix = ""
-        else:
-            suffix = "-merged"
 
         DESKTOP = os.path.join(os.path.join(
             os.environ['USERPROFILE']), 'Desktop')

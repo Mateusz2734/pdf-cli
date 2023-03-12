@@ -5,7 +5,7 @@ from tools.merger import Merger
 
 @click.command(short_help="Merge two or more PDFs")
 @click.argument('paths', nargs=-1, metavar="<paths>")
-@click.option("-s", "--no_suffix", is_flag=True, show_default=True, default=False, help="Do not add the '-merged' suffix")
+@click.option("-s", "--no-suffix", is_flag=True, show_default=True, default=False, help="Do not add the '-merged' suffix")
 def merge(paths, no_suffix):
     """
     This command takes <paths> to PDF files, merges them into one file and saves new file on Desktop

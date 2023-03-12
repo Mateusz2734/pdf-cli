@@ -6,7 +6,8 @@ from tools.deleter import Deleter
 @click.command(short_help="Delete pages from PDF")
 @click.argument('path', nargs=1, metavar="<path>")
 @click.argument('slice', nargs=1, metavar="<slice>")
-def delete(path, slice):
+@click.option("-s", "--no-suffix", is_flag=True, show_default=True, default=False, help="Do not add the '-deleted' suffix")
+def delete(path, slice, no_suffix):
     """
     This command takes <path> to PDF file, deletes <slice> of pages and saves new file on Desktop
     
@@ -16,7 +17,7 @@ def delete(path, slice):
     NOTE that first page is 1, not 0 
     """
     try:
-        deleter = Deleter(path, slice)
+        deleter = Deleter(path, slice, no_suffix)
     except IndexError:
         click.secho('ERROR: No files specified', err=True, fg="red")
     except FileNotFoundError:

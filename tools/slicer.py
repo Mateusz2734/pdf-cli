@@ -9,10 +9,13 @@ from functions.slicetools import create_pageranges
 
 
 class Slicer(Tool):
-    def __init__(self, path: str, slices: str) -> None:
-        self.execute(path, slices)
+    def __init__(self, path: str, slices: str, no_suffix: bool) -> None:
+        self.suffix = "-sliced"
+        if no_suffix:
+            self.suffix = ""
+        self.execute(path, slices, self.suffix)
 
-    def execute(self, path: str, slices: str):
+    def execute(self, path: str, slices: str, suffix: str):
         """
         It takes a PDF file and a list of page ranges, and writes a new PDF file with only the pages in
         the ranges
@@ -25,7 +28,7 @@ class Slicer(Tool):
         DESKTOP = os.path.join(os.path.join(
             os.environ['USERPROFILE']), 'Desktop')
         filename = os.path.basename(path).split(".")[0]
-        out = os.path.join(DESKTOP, f"{filename}-sliced.pdf")
+        out = os.path.join(DESKTOP, f"{filename}{suffix}.pdf")
 
         slices = create_pageranges(slices)
 
